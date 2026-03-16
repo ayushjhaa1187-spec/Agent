@@ -51,3 +51,16 @@ def test_days_until_expiry_invalid_format(mock_datetime_now):
 
     with pytest.raises(ValueError):
         record.days_until_expiry()
+
+@patch('builtins.print')
+def test_scan_inventory_secure_error_message(mock_print, mock_datetime_now):
+    from agent import StockSenseAgent
+    agent = StockSenseAgent()
+    # Path outside allowed directory
+    result = agent.scan_inventory("../etc/passwd")
+
+    # Should return None due to failure
+    assert result is None
+
+    # Verify the specific exception message is not printed
+    mock_print.assert_called_with(f"{agent.logger_prefix} ERROR: Invalid file path or file not found")

@@ -58,7 +58,7 @@ class StockSenseAgent:
         target_path = os.path.realpath(filepath)
 
         if os.path.commonpath([allowed_path, target_path]) != allowed_path:
-            raise ValueError(f"Security Error: Path {filepath} is outside allowed directory {allowed_dir}")
+            raise ValueError("Security Error: Path is outside allowed directory")
         return target_path
 
     def scan_inventory(self, inventory_file="data/sample_inventory.csv"):
@@ -84,8 +84,8 @@ class StockSenseAgent:
             # Validate input file path
             validated_path = self._validate_path(inventory_file, "data")
             inventory = pd.read_csv(validated_path)
-        except (FileNotFoundError, ValueError) as e:
-            print(f"{self.logger_prefix} ERROR: {e}")
+        except (FileNotFoundError, ValueError):
+            print(f"{self.logger_prefix} ERROR: Invalid file path or file not found")
             return None
         
         # OPTIMIZATION 1: Vectorized date parsing
@@ -167,8 +167,8 @@ class StockSenseAgent:
             with open(validated_path, "w") as f:
                 json.dump(recommendations, f, indent=2)
             print(f"{self.logger_prefix} Recommendations saved to {output_file}")
-        except ValueError as e:
-            print(f"{self.logger_prefix} ERROR: {e}")
+        except ValueError:
+            print(f"{self.logger_prefix} ERROR: Invalid output file path")
             return None
 
 if __name__ == "__main__":
