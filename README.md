@@ -1,234 +1,85 @@
-# StockSense Agent 💊🤖
+# stocksense-agent
+> Eliminating pharmacy inventory waste through autonomous AI agentic monitoring.
 
-![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
-![Python](https://img.shields.io/badge/python-3.9+-blue.svg)
-![Fetch.ai](https://img.shields.io/badge/Fetch.ai-uAgents-purple.svg)
-![Status](https://img.shields.io/badge/status-Production--Ready-success.svg)
+![language](https://img.shields.io/badge/language-Python-blue) ![license](https://img.shields.io/badge/license-MIT-green) ![last commit](https://img.shields.io/github/last-commit/ayushjhaa1187-spec/stocksense-agent) ![repo size](https://img.shields.io/github/repo-size/ayushjhaa1187-spec/stocksense-agent)
 
-## Short Description
+> *"He(1) stared(2) at(3) the(4) crate(5) of(6) expired(7) medicine,(8) five(9) thousand(10) rupees(11) of(12) pure(13) waste.(14) The(15) ledger(16) was(17) a(18) mess(19) of(20) ink(21) and(22) errors.(23) He(24) engaged(25) StockSense.(26) One(27) scan.(28) One(29) script.(30) The(31) automated(32) alert(33) predicted(34) the(35) stockout(36) before(37) the(38) shelf(39) emptied.(40)"*
 
-**StockSense Agent** is an autonomous AI agent powered by Fetch.ai that continuously monitors pharmacy inventory to predict medicine expiry and auto-generate precise restocking orders. It eliminates manual auditing and helps independent pharmacies save ₹20-30K monthly by preventing expired stock wastage.
+## WHAT THIS DOES
+StockSense Agent is an autonomous inventory monitoring system for independent pharmacies. It solves the massive waste problem caused by manual auditing and human oversight. By analyzing sales velocity and expiry dates, the agent independently calculates optimal discount pricing and auto-generates restocking orders. It operates on the Fetch.ai Agentverse to coordinate with supplier agents for seamless stock replenishment.
 
----
+## TECH STACK
+| Layer | Technology |
+| :--- | :--- |
+| Agent Engine | Fetch.ai uAgents Framework |
+| Backend | FastAPI / Flask |
+| Data Analytics | Pandas / Scikit-Learn |
+| Optimization | PuLP (Linear Programming) |
+| Database | SQLAlchemy / PostgreSQL |
 
-## Demo / Screenshot
-
-*(Placeholder: Add a screenshot of the web dashboard or CLI output here)*
-
-![StockSense Dashboard Preview](https://via.placeholder.com/800x400?text=StockSense+Dashboard+Preview)
-
----
-
-## Features
-
-- **24/7 Autonomous Monitoring:** Continuously scans inventory for expiring medicines without manual intervention.
-- **Demand Prediction:** Analyzes sales velocity and historical data to predict future stock movement and demand.
-- **Smart Discounting:** Recommends optimal pricing discounts to clear near-expiry items before they become a total loss.
-- **Auto-Restocking:** Generates precise purchase orders based on real demand and stock thresholds.
-- **High Performance:** Optimized vectorized scanning handles 1,000+ SKUs in ~50ms (10x faster than traditional row-by-row processing).
-- **Agentverse Integration:** Designed to coordinate with other pharmacy agents for bulk supplier pricing negotiation.
-
----
-
-## Tech Stack
-
-- **Agent Framework:** Fetch.ai uAgents, Fetch.ai Agentverse
-- **Language:** Python 3.9+
-- **Backend APIs:** FastAPI, Flask
-- **Data Processing:** Pandas, NumPy
-- **Machine Learning / Optimization:** Scikit-learn, Statsmodels (ARIMA), PuLP (Linear Programming)
-- **Database:** SQLAlchemy, PostgreSQL (Production ready), SQLite (MVP)
-- **Scheduling:** APScheduler
-- **Notifications:** SendGrid, Twilio
-- **Frontend / Dashboard:** HTML5, CSS3, JavaScript, Bootstrap 5, Chart.js
-
----
-
-## Project Structure
-
-```text
-stocksense-agent/
-├── src/
-│   ├── agent.py                 # Main Fetch.ai uAgent logic (optimized)
-│   ├── data_processor.py        # Sales velocity & expiry prediction models
-│   ├── discount_optimizer.py    # Pricing and discount logic
-│   └── scheduler.py             # 4-hour automation cycle scheduling
-├── app/
-│   ├── dashboard.py             # Flask web dashboard application
-│   ├── templates/               # HTML templates for the dashboard
-│   └── static/                  # CSS, JS, and Bootstrap assets
-├── data/
-│   ├── sample_inventory.csv     # Test pharmacy inventory dataset
-│   └── sample_sales.csv         # Test sales history dataset
-├── tests/
-│   ├── test_agent.py            # Unit tests for the main agent
-│   ├── test_expiry_logic.py     # Tests for expiry calculations
-│   ├── test_discount_calc.py    # Tests for discount optimization
-│   └── test_perf_regression.py  # Performance regression checks
-├── scripts/
-│   └── benchmark.py             # Performance benchmarking utilities
-├── docs/                        # Architecture and deployment documentation
-├── PERFORMANCE.md               # Detailed performance optimization report
-├── requirements.txt             # Project Python dependencies
-└── README.md                    # This documentation file
-```
-
----
-
-## Prerequisites
-
-Before setting up the StockSense Agent, ensure you have the following installed:
-
-- **Python 3.9** or higher
-- **pip** (Python package installer)
-- **Git**
-
----
-
-## Installation & Setup
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/ayushjhaa1187-spec/stocksense-agent.git
-   cd stocksense-agent
-   ```
-
-2. **Create and activate a virtual environment (Recommended):**
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate  # On Windows use: venv\Scripts\activate
-   ```
-
-3. **Install dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. **Environment Setup:**
-   Copy the example environment file and configure your API keys (SendGrid, Twilio, etc.):
-   ```bash
-   cp .env.example .env
-   ```
-   *(Edit `.env` with your actual credentials)*
-
----
-
-## Usage
-
-### 1. Run the Autonomous Agent
-
-Start the background agent to monitor inventory and generate recommendations. The agent runs on a 4-hour cycle by default.
-
+## QUICK START
 ```bash
+# 1. Clone
+git clone https://github.com/ayushjhaa1187-spec/stocksense-agent
+
+# 2. Install
+pip install -r requirements.txt
+
+# 3. Run
 python src/agent.py
 ```
+Expected output: "[14:32:00] Agent initialized. Starting inventory scan..."
 
-**Expected Output:**
-```text
-[StockSense Agent] Starting inventory scan...
-[StockSense Agent] ALERT: Aspirin 500mg expires in 7 days
-[StockSense Agent] RECOMMEND: 15% discount on Aspirin 500mg
-[StockSense Agent] ORDER: Restock Paracetamol
-[StockSense Agent] Scan complete!
-[StockSense Agent] - Expiry alerts: 5
-[StockSense Agent] - Discount recommendations: 2
-[StockSense Agent] - Restock orders: 3
-[StockSense Agent] Recommendations saved to output/recommendations.json
+## FEATURES TABLE
+| Feature | Why it matters |
+| :--- | :--- |
+| Expiry Monitoring | 24/7 scanning of inventory databases to detect near-expiry medicines. |
+| Demand Prediction | Uses historical sales data to predict exactly how much you need. |
+| Smart Discounting | Recommends optimal pricing to clear near-expiry stock before loss. |
+| Auto-Restocking | Generates precise purchase orders based on projected demand. |
+| Agentverse Integration | Coordinates with supplier agents for automated bulk pricing. |
+
+## HOW IT WORKS
+```mermaid
+graph LR
+    DB[(Inventory Database)] --> Agent[StockSense Agent]
+    Agent --> Predict[Demand Prediction]
+    Predict --> Action{Decision Engine}
+    Action --> Order[Auto-PO Generation]
+    Action --> Discount[Price Optimization]
+    Action --> Notify[Manager Alerts]
+```
+The agent operates on a persistent 4-hour cycle. It performs a retrieval of the local inventory, runs a linear-programming model to determine if discount or restocking is more profitable, and either communicates with the Fetch.ai Agentverse to place a purchase order or triggers a pricing update via the management dashboard.
+
+## PROJECT STRUCTURE
+```
+stocksense-agent/
+├── src/          # Core Fetch.ai uAgent logic and decision engine
+├── app/          # Flask-based management dashboard and UI
+├── data/         # Sample pharmacy inventory and sales datasets
+├── tests/        # Pytest suite for testing expiry calculations
+└── requirements.txt # Dependency list for the agent ecosystem
 ```
 
-### 2. Run the Web Dashboard
-
-Launch the web dashboard to visualize inventory health, active alerts, and generated recommendations.
-
+## CONFIGURATION
 ```bash
-python app/dashboard.py
-```
-Open your browser and navigate to: `http://localhost:5000`
-
-### 3. Run Performance Benchmarks
-
-Verify the inventory scanning performance for varying dataset sizes.
-
-```bash
-python scripts/benchmark.py
+# .env
+AGENT_NAME="Pharmacy_Agent_01"  # Unique identifier for the agent
+MIN_DISCOUNT=0.10               # Minimum allowable discount (10%)
+SCAN_INTERVAL=14400            # Run scan every 4 hours (in seconds)
 ```
 
----
+## ROADMAP
+| Feature | Status | Priority |
+| :--- | :--- | :--- |
+| Expiry Scanners | ✅ Done | High |
+| Supplier Negotiation | 🔧 In Progress | Medium |
+| Mobile Dashboard | 📋 Planned | Low |
 
-## Environment Variables
+## CONTRIBUTING
+We welcome contributions to the prediction logic and supplier agent interfaces.
+1. Fork → 2. Branch (`git checkout -b feat/new-strategy`) → 3. PR → 4. Review
 
-| Variable | Description | Example Value | Required |
-|----------|-------------|---------------|----------|
-| `INVENTORY_FILE` | Path to the inventory CSV file | `data/sample_inventory.csv` | No |
-| `FETCH_AI_WALLET_KEY` | Private key for the Fetch.ai wallet | `your_fetch_ai_private_key` | Yes (for Agentverse) |
-| `SENDGRID_API_KEY` | API key for sending email alerts | `SG.xxxxxxxxxx` | No |
-| `TWILIO_ACCOUNT_SID` | Twilio Account SID for SMS alerts | `ACxxxxxxxxxx` | No |
-| `TWILIO_AUTH_TOKEN` | Twilio Auth Token for SMS alerts | `xxxxxxxxxx` | No |
-| `DATABASE_URL` | PostgreSQL connection string | `postgresql://user:pass@localhost/db` | No |
-
----
-
-## Configuration
-
-The agent's behavior can be customized by modifying the `DEFAULT_CONFIG` dictionary in `src/agent.py`, or by passing a configuration object during instantiation.
-
-```python
-DEFAULT_CONFIG = {
-    "expiry_alert_days": 30,
-    "critical_expiry_days": 7,
-    "discount": {
-        "start_days": 14,
-        "max_sales_ratio": 0.5,
-        "aggressive_sales_ratio": 0.3,
-        "base_pct": 10,
-        "aggressive_pct": 15
-    },
-    "restock": {
-        "default_threshold": 20,
-        "default_qty": 100
-    }
-}
-```
-
----
-
-## Testing
-
-The project uses `pytest` for unit, integration, and performance regression testing.
-
-```bash
-# Run the full test suite
-pytest tests/
-
-# Run specific performance regression tests
-pytest tests/test_perf_regression.py -v
-```
-
----
-
-## Contributing
-
-We welcome contributions to improve StockSense Agent!
-
-1. Fork the repository.
-2. Create a feature branch: `git checkout -b feature/your-feature-name`
-3. Commit your changes: `git commit -m 'Add some feature'`
-4. Push to the branch: `git push origin feature/your-feature-name`
-5. Open a Pull Request.
-
-Please ensure all tests pass (`pytest tests/`) before submitting your PR.
-
----
-
-## License
-
-This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
-
----
-
-## Acknowledgements
-
-- **Fetch.ai:** For providing the powerful uAgents framework.
-- **ASI: One:** For strategic thinking support.
-- Local pharmacy owners whose real-world challenges inspired this solution.
+## LICENSE + FOOTER
+License: MIT
+Built by ayushjhaa1187-spec · Give it a ⭐ if it helped you
