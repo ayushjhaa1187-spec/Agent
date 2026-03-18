@@ -51,3 +51,22 @@ def test_days_until_expiry_invalid_format(mock_datetime_now):
 
     with pytest.raises(ValueError):
         record.days_until_expiry()
+from agent import StockSenseAgent
+
+@patch('builtins.print')
+def test_scan_inventory_secure_error_message(mock_print):
+    agent = StockSenseAgent()
+    agent.scan_inventory("../invalid_path.csv")
+    mock_print.assert_any_call(f"{agent.logger_prefix} ERROR: Invalid inventory file or path")
+    # Ensure no exception details are leaked
+    for call in mock_print.call_args_list:
+        assert "Security Error" not in call[0][0]
+
+@patch('builtins.print')
+def test_save_recommendations_secure_error_message(mock_print):
+    agent = StockSenseAgent()
+    agent.save_recommendations({}, "../invalid_path.json")
+    mock_print.assert_any_call(f"{agent.logger_prefix} ERROR: Invalid output file or path")
+    # Ensure no exception details are leaked
+    for call in mock_print.call_args_list:
+        assert "Security Error" not in call[0][0]
