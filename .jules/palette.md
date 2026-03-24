@@ -1,0 +1,3 @@
+## 2024-05-20 - Dynamic Focus States and Screen Reader Polish
+**Learning:** Hardcoded outline colors fail against gradient backgrounds like `#667eea` to `#764ba2`. Using `currentColor` with `outline-offset` provides a bulletproof, adaptable `:focus-visible` state across all components without variable overrides. Also, native emojis used as icons need explicit `aria-hidden="true"` otherwise screen readers read their literal unicode names ("package", "alarm clock"), which adds noise when adjacent headings already provide context.
+**Action:** Apply `*:focus-visible` with `currentColor` universally for robust keyboard accessibility on custom landing pages. Always hide decorative emojis from the accessibility tree.
