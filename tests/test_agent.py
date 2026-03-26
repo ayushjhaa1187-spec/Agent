@@ -51,3 +51,35 @@ def test_days_until_expiry_invalid_format(mock_datetime_now):
 
     with pytest.raises(ValueError):
         record.days_until_expiry()
+
+@patch('builtins.print')
+def test_scan_inventory_secure_error(mock_print):
+    from agent import StockSenseAgent
+    agent = StockSenseAgent()
+    # Path traversal attempt
+    result = agent.scan_inventory("../../../etc/passwd")
+
+    # Verify result is None
+    assert result is None
+
+    # Verify secure error message and no leakage
+    mock_print.assert_any_call(f"{agent.logger_prefix} ERROR: File operation failed or path is invalid")
+    # Verify the path string is NOT in the print output
+    for call in mock_print.call_args_list:
+        assert "../../../etc/passwd" not in str(call)
+
+@patch('builtins.print')
+def test_save_recommendations_secure_error(mock_print):
+    from agent import StockSenseAgent
+    agent = StockSenseAgent()
+    # Path traversal attempt
+    result = agent.save_recommendations({}, "../../../etc/passwd")
+
+    # Verify result is None
+    assert result is None
+
+    # Verify secure error message and no leakage
+    mock_print.assert_any_call(f"{agent.logger_prefix} ERROR: File operation failed or path is invalid")
+    # Verify the path string is NOT in the print output
+    for call in mock_print.call_args_list:
+        assert "../../../etc/passwd" not in str(call)
