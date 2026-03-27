@@ -51,3 +51,26 @@ def test_days_until_expiry_invalid_format(mock_datetime_now):
 
     with pytest.raises(ValueError):
         record.days_until_expiry()
+
+@patch('builtins.print')
+def test_scan_inventory_generic_error(mock_print):
+    from agent import StockSenseAgent
+    agent = StockSenseAgent()
+    # Mock _validate_path to raise a ValueError, simulating path traversal
+    with patch.object(agent, '_validate_path', side_effect=ValueError("Security Error: Access denied to the requested path")):
+        agent.scan_inventory("../../etc/passwd")
+
+    # Assert that the print output is generic and does not leak the path
+    mock_print.assert_called_with(f"{agent.logger_prefix} ERROR: Could not read inventory file")
+
+@patch('builtins.print')
+def test_save_recommendations_generic_error(mock_print):
+    from agent import StockSenseAgent
+    agent = StockSenseAgent()
+
+    # Mock _validate_path to raise a ValueError
+    with patch.object(agent, '_validate_path', side_effect=ValueError("Security Error: Access denied to the requested path")):
+        agent.save_recommendations({"dummy": "data"}, "../../etc/passwd")
+
+    # Assert that the print output is generic and does not leak the path
+    mock_print.assert_called_with(f"{agent.logger_prefix} ERROR: Could not save recommendations")
