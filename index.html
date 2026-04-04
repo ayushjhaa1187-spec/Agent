@@ -13,6 +13,11 @@
             box-sizing: border-box;
         }
 
+        *:focus-visible {
+            outline: 3px solid currentColor;
+            outline-offset: 2px;
+        }
+
         body {
             font-family: 'Space Grotesk', sans-serif;
             background-color: #0b1120;
@@ -233,17 +238,17 @@
             <h2>Core Capabilities</h2>
             <div class="feature-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">📈</div>
+                    <div class="feature-icon" aria-hidden="true">📈</div>
                     <h3>Demand Forecasting</h3>
                     <p>Machine learning models predict foot traffic and product demand seasonality across various localized node points.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🔄</div>
+                    <div class="feature-icon" aria-hidden="true">🔄</div>
                     <h3>Supply Chain Resilience</h3>
                     <p>Automatically adjust reorder points based on global shipping delays and logistical bottlenecks.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🧠</div>
+                    <div class="feature-icon" aria-hidden="true">🧠</div>
                     <h3>Autonomous Resolution</h3>
                     <p>Fetch.ai powered agent negotiations ensure continuous operations without human intervention.</p>
                 </div>
