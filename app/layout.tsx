@@ -9,11 +9,14 @@ import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import './globals.css'
 
-const title = 'OSS Vibe Coding Platform'
-const description = `This is a demo of an end-to-end coding platform where the user can enter text prompts, and the agent will create a full stack application. It uses Vercel's AI Cloud services like Sandbox for secure code execution, AI Gateway for GPT-5 and other models support, Fluid Compute for efficient rendering and streaming, and it's built with Next.js and the AI SDK.`
+const title = 'CORE_VIBE AI | Neural_Coding_Environment'
+const description = `The next evolution in AI-driven development. Enter a text prompt, and the Core_Vibe agent will architect a production-ready application within seconds. Built with the Next.js AI SDK 4.0.`
 
 export const metadata: Metadata = {
-  title,
+  title: {
+    default: title,
+    template: `%s | CORE_VIBE`
+  },
   description,
   openGraph: {
     images: [

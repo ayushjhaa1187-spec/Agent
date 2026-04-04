@@ -36,53 +36,56 @@ export function Welcome(props: {
   }
 
   return (
-    <div className="fixed w-screen h-screen z-10">
-      <div className="absolute w-full h-full bg-secondary opacity-60" />
+    <div className="fixed w-screen h-screen z-10 flex items-center justify-center p-4">
+      <div className="absolute w-full h-full bg-[#05070a]/90 backdrop-blur-xl transition-all duration-700" onClick={handleDismiss} />
+      
       <div
-        className="relative w-full h-full flex items-center justify-center"
-        onClick={handleDismiss}
+        className="relative w-full max-w-xl bg-[#0a0c10] border border-white/5 shadow-2xl rounded-2xl overflow-hidden animate-in fade-in zoom-in duration-500 ease-out"
+        onClick={(event) => event.stopPropagation()}
       >
-        <div
-          className="bg-background max-w-xl mx-4 rounded-lg shadow overflow-hidden"
-          onClick={(event) => event.stopPropagation()}
-        >
-          <div className="p-6 space-y-4 ">
-            <h1 className="text-2xl sans-serif font-semibold tracking-tight mb-7">
-              OSS Vibe Coding Platform
-            </h1>
-            <p className="text-base text-primary">
-              This is a <strong>demo</strong> of an end-to-end coding platform
-              where the user can enter text prompts, and the agent will create a
-              full stack application.
-            </p>
-            <p className="text-base text-secondary-foreground">
-              It uses Vercel&apos;s AI Cloud services like{' '}
-              <ExternalLink href="https://vercel.com/docs/vercel-sandbox">
-                Sandbox
-              </ExternalLink>{' '}
-              for secure code execution,{' '}
-              <ExternalLink href="https://vercel.com/docs/ai-gateway">
-                AI Gateway
-              </ExternalLink>{' '}
-              for GPT-5 and other models support,{' '}
-              <ExternalLink href="https://vercel.com/fluid">
-                Fluid Compute
-              </ExternalLink>{' '}
-              for efficient rendering and streaming, and it&apos;s built with{' '}
-              <ExternalLink href="https://nextjs.org/">Next.js</ExternalLink>{' '}
-              and the{' '}
-              <ExternalLink href="https://ai-sdk.dev/docs/introduction">
-                AI SDK
-              </ExternalLink>
-              .
-            </p>
+        <div className="p-8 space-y-6">
+          <div className="p-3 w-fit rounded-xl bg-primary/10 border border-primary/20 mb-4 animate-pulse">
+            <InfoIcon className="text-primary w-6 h-6" />
           </div>
-          <footer className="bg-secondary flex justify-end p-4 border-t border-border">
-            <Button className="cursor-pointer" onClick={handleDismiss}>
-              Try now
-            </Button>
-          </footer>
+
+          <h1 className="text-3xl font-black tracking-tighter text-white uppercase font-mono">
+            CORE_VIBE <span className="text-primary">AI</span>
+          </h1>
+          
+          <div className="space-y-4">
+            <p className="text-lg font-medium text-slate-200 leading-relaxed font-sans">
+              Welcome to the <strong>Neural_Coding_Environment</strong>.
+            </p>
+            <p className="text-sm text-slate-400 leading-6 font-mono">
+              The next evolution in AI-driven development. Enter a text prompt, and the 
+              Core_Vibe agent will architect a production-ready application within seconds.
+            </p>
+            
+            <div className="pt-4 border-t border-white/5 space-y-3">
+              <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] mb-2">INFRASTRUCTURE CORE</p>
+              <div className="grid grid-cols-2 gap-2">
+                {[
+                  { label: 'Secure Sandbox', icon: '01' },
+                  { label: 'GPT-5 Neural Links', icon: '02' },
+                  { label: 'Fluid Compute Engine', icon: '03' },
+                  { label: 'AI SDK v4 Runtime', icon: '04' }
+                ].map((item) => (
+                  <div key={item.label} className="flex items-center gap-2 p-2 rounded-lg bg-white/5 border border-white/5">
+                    <span className="text-[8px] font-mono text-primary/40">{item.icon}</span>
+                    <span className="text-[11px] font-mono text-slate-300">{item.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
+
+        <footer className="bg-black/40 px-8 py-5 border-t border-white/5 flex justify-between items-center">
+          <span className="text-[9px] font-mono text-slate-500 font-bold uppercase tracking-widest animate-pulse">Ready_to_initialize</span>
+          <Button className="font-black uppercase tracking-widest text-xs px-8 py-5 bg-primary text-black hover:bg-white hover:scale-105 transition-all shadow-xl shadow-primary/20" onClick={handleDismiss}>
+            Initialize_Workspace
+          </Button>
+        </footer>
       </div>
     </div>
   )
