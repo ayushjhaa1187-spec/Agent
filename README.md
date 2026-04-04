@@ -1,18 +1,30 @@
-# stocksense-agent
-**Tagline:** Autonomous edge-agent for real-time inventory harvesting and anomaly detection.
+# RetailDemand AI
 
-![build status](https://img.shields.io/badge/build-passing-brightgreen) ![license](https://img.shields.io/badge/license-MIT-blue) ![language](https://img.shields.io/badge/language-Node.js-green)
+**Tagline:** Autonomous AI Agent for Retail Demand Forecasting and Supply Chain Resilience.
 
-# 1. PROJECT BANNER
-- Project name: stocksense-agent
-- Tagline: Autonomous edge-agent for real-time inventory harvesting and anomaly detection.
-- Badges: build status · license · version · language · stars
+![build status](https://img.shields.io/badge/build-passing-brightgreen) ![license](https://img.shields.io/badge/license-MIT-blue) ![language](https://img.shields.io/badge/language-Python-yellow)
 
-# 2. THE STORY (40-word short story — REQUIRED)
-> *"The stock was disappearing, but no one saw where. The dashboard was blind. He deployed the Agent. One connection. One crawl. The discrepancy was found instantly—a hidden leakage in the SKU tracking. The data aligned. The loss stopped. Finally."*
+## 1. PROJECT BANNER
+- **Project name**: RetailDemand AI
+- **Tagline**: Predict the Future of Retail Inventory.
+- **Theme**: Ambient Glassmorphism, Space Grotesk Typography.
 
-# 3. WHAT THIS DOES
-A lightweight, distributed agent designed to run close to the data source (e.g., store servers or local databases). It harvests inventory signals and performs edge-based anomaly detection before syncing to the central StockSense Hub.
+## 2. THE STORY
+> *"Empty shelves. Overstocked warehouses. The retail network was bleeding capital on inefficiencies because they could only react to the present. We unleashed an autonomous agent that could read the subtle currents of foot traffic and seasonal shipping delays before they happened. Now, the shelves are always just right. The supply chain thinks for itself."*
 
-# 4. TECH STACK
-- Node.js, Puppeteer (for scraping), MQTT.
+## 3. WHAT THIS DOES
+A Fetch.ai-powered autonomous agent dedicated to forecasting consumer demand and dynamically optimizing localized retail inventories. It replaces reactive reordering with predictive elasticity, saving massive logistics overhead.
+
+## 4. TECH STACK
+- **Agent Intelligence**: Fetch.ai, uAgents framework.
+- **Predictive Engine**: Python, Scikit-learn, TensorFlow.
+- **Frontend**: Premium HTML/Vanilla CSS (Ambient Dark Mode).
+
+## 5. SETUP
+### Agent Launch
+1. `pip install -r requirements.txt`
+2. `python src/agent/main.py`
+
+### Frontend Launch
+Launch a local server to view the `index.html`:
+`python -m http.server 8000`
