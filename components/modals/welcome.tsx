@@ -2,7 +2,7 @@
 
 import type { ReactNode } from 'react'
 import { Button } from '@/components/ui/button'
-import { InfoIcon } from 'lucide-react'
+import { InfoIcon, CodeIcon, CpuIcon, GlobeIcon, ZapIcon } from 'lucide-react'
 import { create } from 'zustand'
 import { useEffect } from 'react'
 
@@ -37,42 +37,42 @@ export function Welcome(props: {
 
   return (
     <div className="fixed w-screen h-screen z-10 flex items-center justify-center p-4">
-      <div className="absolute w-full h-full bg-[#05070a]/90 backdrop-blur-xl transition-all duration-700" onClick={handleDismiss} />
-      
+      <div className="absolute w-full h-full bg-background/80 backdrop-blur-sm transition-all duration-300" onClick={handleDismiss} />
+
       <div
-        className="relative w-full max-w-xl bg-[#0a0c10] border border-white/5 shadow-2xl rounded-2xl overflow-hidden animate-in fade-in zoom-in duration-500 ease-out"
+        className="relative w-full max-w-xl bg-card border border-border shadow-xl rounded-2xl overflow-hidden animate-in fade-in zoom-in duration-300 ease-out"
         onClick={(event) => event.stopPropagation()}
       >
-        <div className="p-8 space-y-6">
-          <div className="p-3 w-fit rounded-xl bg-primary/10 border border-primary/20 mb-4 animate-pulse">
-            <InfoIcon className="text-primary w-6 h-6" />
+        <div className="p-8 space-y-5">
+          <div className="p-2.5 w-fit rounded-xl bg-primary/10 border border-primary/20">
+            <CodeIcon className="text-primary w-5 h-5" />
           </div>
 
-          <h1 className="text-3xl font-black tracking-tighter text-white uppercase font-mono">
-            CORE_VIBE <span className="text-primary">AI</span>
+          <h1 className="text-2xl font-bold tracking-tight text-foreground">
+            StockSense Agent
           </h1>
-          
-          <div className="space-y-4">
-            <p className="text-lg font-medium text-slate-200 leading-relaxed font-sans">
-              Welcome to the <strong>Neural_Coding_Environment</strong>.
+
+          <div className="space-y-3">
+            <p className="text-base text-foreground/80 leading-relaxed">
+              An AI-powered coding platform that turns your ideas into working applications.
             </p>
-            <p className="text-sm text-slate-400 leading-6 font-mono">
-              The next evolution in AI-driven development. Enter a text prompt, and the 
-              Core_Vibe agent will architect a production-ready application within seconds.
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Describe the app you want to build, and the AI agent will create a sandbox, generate
+              code, install dependencies, and give you a live preview — all in seconds.
             </p>
-            
-            <div className="pt-4 border-t border-white/5 space-y-3">
-              <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] mb-2">INFRASTRUCTURE CORE</p>
+
+            <div className="pt-4 border-t border-border space-y-3">
+              <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-2">Capabilities</p>
               <div className="grid grid-cols-2 gap-2">
                 {[
-                  { label: 'Secure Sandbox', icon: '01' },
-                  { label: 'GPT-5 Neural Links', icon: '02' },
-                  { label: 'Fluid Compute Engine', icon: '03' },
-                  { label: 'AI SDK v4 Runtime', icon: '04' }
+                  { label: 'Cloud Sandboxes', icon: GlobeIcon },
+                  { label: 'Multi-Model AI', icon: CpuIcon },
+                  { label: 'Live Preview', icon: ZapIcon },
+                  { label: 'Auto Error Fix', icon: CodeIcon },
                 ].map((item) => (
-                  <div key={item.label} className="flex items-center gap-2 p-2 rounded-lg bg-white/5 border border-white/5">
-                    <span className="text-[8px] font-mono text-primary/40">{item.icon}</span>
-                    <span className="text-[11px] font-mono text-slate-300">{item.label}</span>
+                  <div key={item.label} className="flex items-center gap-2 p-2.5 rounded-lg bg-muted/50 border border-border">
+                    <item.icon className="w-3.5 h-3.5 text-primary" />
+                    <span className="text-xs font-medium text-foreground/80">{item.label}</span>
                   </div>
                 ))}
               </div>
@@ -80,10 +80,13 @@ export function Welcome(props: {
           </div>
         </div>
 
-        <footer className="bg-black/40 px-8 py-5 border-t border-white/5 flex justify-between items-center">
-          <span className="text-[9px] font-mono text-slate-500 font-bold uppercase tracking-widest animate-pulse">Ready_to_initialize</span>
-          <Button className="font-black uppercase tracking-widest text-xs px-8 py-5 bg-primary text-black hover:bg-white hover:scale-105 transition-all shadow-xl shadow-primary/20" onClick={handleDismiss}>
-            Initialize_Workspace
+        <footer className="bg-muted/50 px-8 py-4 border-t border-border flex justify-between items-center">
+          <span className="text-xs text-muted-foreground">Ready to start</span>
+          <Button
+            className="font-medium text-sm px-6"
+            onClick={handleDismiss}
+          >
+            Get started
           </Button>
         </footer>
       </div>
@@ -100,12 +103,12 @@ export function ToggleWelcome() {
       variant="outline"
       size="sm"
     >
-      <InfoIcon /> <span className="hidden lg:inline">What&apos;s this?</span>
+      <InfoIcon className="w-4 h-4" /> <span className="hidden lg:inline">About</span>
     </Button>
   )
 }
 
-function ExternalLink({
+export function ExternalLink({
   children,
   href,
 }: {

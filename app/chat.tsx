@@ -49,38 +49,40 @@ export function Chat({ className }: Props) {
   }, [status, setChatStatus])
 
   return (
-    <Panel className={cn('bg-[#05070a]/50 backdrop-blur-sm border-r border-white/5', className)}>
-      <PanelHeader className="border-b border-white/5 bg-black/20">
-        <div className="flex items-center font-mono font-black uppercase text-[11px] tracking-[0.2em] text-white">
-          <MessageCircleIcon className="mr-2 w-3.5 h-3.5 text-primary" />
-          Neural_Chat
+    <Panel className={cn('bg-card border-border', className)}>
+      <PanelHeader className="border-b border-border bg-muted/50">
+        <div className="flex items-center text-sm font-medium text-foreground">
+          <MessageCircleIcon className="mr-2 w-4 h-4 text-primary" />
+          Chat
         </div>
         <div className="ml-auto flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-          <span className="font-mono text-[9px] font-bold text-primary uppercase tracking-widest leading-none">[{status}]</span>
+          <span className={cn(
+            'w-1.5 h-1.5 rounded-full',
+            status === 'streaming' || status === 'submitted' ? 'bg-amber-500 animate-pulse' : 'bg-emerald-500'
+          )} />
+          <span className="text-xs text-muted-foreground capitalize">{status}</span>
         </div>
       </PanelHeader>
 
       {/* Messages Area */}
       {messages.length === 0 ? (
         <div className="flex-1 min-h-0 flex flex-col items-center justify-center p-6 text-center">
-          <div className="relative mb-8">
-            <div className="absolute inset-0 bg-primary/20 blur-2xl rounded-full" />
-            <MessageCircleIcon className="w-12 h-12 text-primary relative z-10 opacity-50" />
+          <div className="mb-6">
+            <MessageCircleIcon className="w-10 h-10 text-muted-foreground/40" />
           </div>
-          
-          <h3 className="text-white font-black uppercase tracking-tighter text-lg mb-2">Initialize_Session</h3>
-          <p className="text-slate-500 font-mono text-[10px] uppercase tracking-widest mb-8">Select a neural template to begin architecting</p>
-          
+
+          <h3 className="text-lg font-semibold text-foreground mb-1">Start a conversation</h3>
+          <p className="text-sm text-muted-foreground mb-6">Describe the application you want to build</p>
+
           <div className="grid grid-cols-1 gap-2 w-full max-w-sm">
             {TEST_PROMPTS.map((prompt, idx) => (
               <button
                 key={idx}
-                className="group relative flex items-center text-left px-4 py-3 rounded-lg bg-white/5 border border-white/5 hover:border-primary/50 transition-all duration-300"
+                className="group flex items-center text-left px-4 py-3 rounded-lg bg-muted/50 border border-border hover:border-primary/50 hover:bg-accent transition-all"
                 onClick={() => validateAndSubmitMessage(prompt)}
               >
-                <span className="text-[10px] font-mono text-primary/40 mr-4 font-bold group-hover:text-primary transition-colors">{String(idx + 1).padStart(2, '0')}</span>
-                <span className="text-xs font-mono text-slate-400 group-hover:text-white transition-colors truncate">{prompt}</span>
+                <span className="text-xs text-muted-foreground mr-3">{idx + 1}.</span>
+                <span className="text-sm text-foreground/80 group-hover:text-foreground transition-colors truncate">{prompt}</span>
               </button>
             ))}
           </div>
@@ -96,29 +98,29 @@ export function Chat({ className }: Props) {
         </Conversation>
       )}
 
-      <div className="p-3 bg-black/40 border-t border-white/5">
+      <div className="p-3 border-t border-border bg-muted/30">
         <form
-          className="flex items-center gap-2 p-1.5 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 transition-all focus-within:border-primary/50"
+          className="flex items-center gap-2 p-1.5 rounded-xl bg-card border border-border hover:border-primary/30 transition-all focus-within:border-primary/50 focus-within:ring-1 focus-within:ring-primary/20"
           onSubmit={async (event) => {
             event.preventDefault()
             validateAndSubmitMessage(input)
           }}
         >
-          <div className="flex items-center gap-1.5 px-1 border-r border-white/10">
-            <Settings className="scale-75 opacity-60 hover:opacity-100 transition-opacity" />
+          <div className="flex items-center gap-1.5 px-1 border-r border-border">
+            <Settings className="scale-90 opacity-70 hover:opacity-100 transition-opacity" />
             <ModelSelector className="scale-90" />
           </div>
           <Input
-            className="flex-1 bg-transparent border-none text-white font-mono text-sm placeholder:text-slate-600 focus-visible:ring-0"
+            className="flex-1 bg-transparent border-none text-foreground text-sm placeholder:text-muted-foreground focus-visible:ring-0"
             disabled={status === 'streaming' || status === 'submitted'}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="System_Query >"
+            placeholder="Describe what you want to build..."
             value={input}
           />
-          <Button 
-            type="submit" 
+          <Button
+            type="submit"
             disabled={status !== 'ready' || !input.trim()}
-            className="h-10 w-10 p-0 rounded-lg bg-primary text-black hover:bg-white transition-all shadow-lg shadow-primary/10 disabled:opacity-20"
+            className="h-9 w-9 p-0 rounded-lg bg-primary text-primary-foreground hover:opacity-90 transition-opacity disabled:opacity-30"
           >
             <SendIcon className="w-4 h-4" />
           </Button>
