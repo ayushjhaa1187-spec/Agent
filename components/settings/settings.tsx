@@ -13,7 +13,7 @@ export function Settings({ className }: { className?: string }) {
     <div className={className}>
       <Popover>
         <PopoverTrigger asChild>
-          <Button className="cursor-pointer" variant="outline" size="sm">
+          <Button aria-label="Settings" className="cursor-pointer" variant="outline" size="sm">
             <SlidersVerticalIcon className="w-4 h-4" />
           </Button>
         </PopoverTrigger>
