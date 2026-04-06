@@ -9,30 +9,15 @@ import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import './globals.css'
 
-const title = 'CORE_VIBE AI | Neural_Coding_Environment'
-const description = `The next evolution in AI-driven development. Enter a text prompt, and the Core_Vibe agent will architect a production-ready application within seconds. Built with the Next.js AI SDK 4.0.`
+const title = 'StockSense | Pharmacy Inventory Intelligence'
+const description = `AI-powered pharmacy inventory and expiry management. Track stock, manage expiry dates, optimize inventory levels, and get intelligent insights for your pharmacy.`
 
 export const metadata: Metadata = {
   title: {
     default: title,
-    template: `%s | CORE_VIBE`
+    template: `%s | StockSense`
   },
   description,
-  openGraph: {
-    images: [
-      {
-        url: 'https://assets.vercel.com/image/upload/v1754588799/OSSvibecodingplatform/OG.png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    images: [
-      {
-        url: 'https://assets.vercel.com/image/upload/v1754588799/OSSvibecodingplatform/OG.png',
-      },
-    ],
-  },
 }
 
 export default function RootLayout({

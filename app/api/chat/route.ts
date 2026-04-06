@@ -25,8 +25,34 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: `Bot detected` }, { status: 403 })
   }
 
-  const [models, { messages, modelId = DEFAULT_MODEL, reasoningEffort }] =
-    await Promise.all([getAvailableModels(), req.json() as Promise<BodyData>])
+  let body: BodyData
+  try {
+    body = await req.json()
+  } catch {
+    return NextResponse.json(
+      { error: 'Invalid request body' },
+      { status: 400 }
+    )
+  }
+
+  const { messages, modelId = DEFAULT_MODEL, reasoningEffort } = body
+
+  if (!messages || !Array.isArray(messages) || messages.length === 0) {
+    return NextResponse.json(
+      { error: 'Messages array is required and cannot be empty' },
+      { status: 400 }
+    )
+  }
+
+  let models
+  try {
+    models = await getAvailableModels()
+  } catch {
+    return NextResponse.json(
+      { error: 'AI service is temporarily unavailable. Please try again.' },
+      { status: 503 }
+    )
+  }
 
   const model = models.find((model) => model.id === modelId)
   if (!model) {
