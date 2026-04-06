@@ -67,7 +67,7 @@ export function Preview({ className, disabled, url }: Props) {
     <Panel className={className}>
       <PanelHeader>
         <div className="absolute flex items-center space-x-1">
-          <a href={currentUrl} target="_blank" className="cursor-pointer px-1">
+          <a href={currentUrl} target="_blank" rel="noopener noreferrer" className="cursor-pointer px-1">
             <CompassIcon className="w-4" />
           </a>
           <button
