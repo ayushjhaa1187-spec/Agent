@@ -13,6 +13,7 @@ import { Input } from '@/components/ui/input'
 import { Message } from '@/components/chat/message'
 import { ModelSelector } from '@/components/settings/model-selector'
 import { Panel, PanelHeader } from '@/components/panels/panels'
+import { cn } from "@/lib/utils";
 import { Settings } from '@/components/settings/settings'
 import { useChat } from '@ai-sdk/react'
 import { useLocalStorageValue } from '@/lib/use-local-storage-value'
