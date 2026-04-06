@@ -67,12 +67,13 @@ export function Preview({ className, disabled, url }: Props) {
     <Panel className={className}>
       <PanelHeader>
         <div className="absolute flex items-center space-x-1">
-          <a href={currentUrl} target="_blank" className="cursor-pointer px-1">
+          <a href={currentUrl} target="_blank" aria-label="Open in new tab" className="cursor-pointer px-1">
             <CompassIcon className="w-4" />
           </a>
           <button
             onClick={refreshIframe}
             type="button"
+            aria-label="Refresh preview"
             className={cn('cursor-pointer px-1', {
               'animate-spin': isLoading,
             })}

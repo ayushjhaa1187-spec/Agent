@@ -117,6 +117,7 @@ export function Chat({ className }: Props) {
           />
           <Button 
             type="submit" 
+            aria-label="Send message"
             disabled={status !== 'ready' || !input.trim()}
             className="h-10 w-10 p-0 rounded-lg bg-primary text-black hover:bg-white transition-all shadow-lg shadow-primary/10 disabled:opacity-20"
           >
