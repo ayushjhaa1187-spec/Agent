@@ -23,7 +23,7 @@ export function GetSandboxURL({
           <CheckIcon className="w-4 h-4" />
         </Spinner>
         {message.url ? (
-          <a href={message.url} target="_blank">
+          <a href={message.url} target="_blank" rel="noopener noreferrer">
             {message.url}
           </a>
         ) : (
