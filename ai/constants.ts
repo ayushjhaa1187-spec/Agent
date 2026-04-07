@@ -23,6 +23,8 @@ export const SUPPORTED_MODELS: GatewayModelId[] = [
 ]
 
 export const TEST_PROMPTS = [
-  'Generate a Next.js app that allows to list and search Pokemons',
-  'Create a `golang` server that responds with "Hello World" to any request',
+  'What medications in my inventory are expiring within the next 30 days?',
+  'How should I handle expired pharmaceutical stock?',
+  'Help me optimize my pharmacy inventory levels for this quarter',
+  'What are the best practices for batch tracking and FIFO management?',
 ]

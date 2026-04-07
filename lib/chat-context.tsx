@@ -27,7 +27,7 @@ export function ChatProvider({ children }: { children: ReactNode }) {
         onToolCall: () => mutate('/api/auth/info'),
         onData: (data: DataUIPart<DataPart>) => mapDataToStateRef.current(data),
         onError: (error) => {
-          toast.error(`Communication error with the AI: ${error.message}`)
+          toast.error('AI is temporarily unavailable. Please try again.')
           console.error('Error sending message:', error)
         },
       }),

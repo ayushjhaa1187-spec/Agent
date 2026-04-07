@@ -1,4 +1,5 @@
 import { ToggleWelcome } from '@/components/modals/welcome'
+import { UserMenu } from '@/components/auth/user-menu'
 import { VercelDashed } from '@/components/icons/vercel-dashed'
 import { cn } from '@/lib/utils'
 
@@ -13,10 +14,10 @@ export async function Header({ className }: Props) {
         <VercelDashed className="w-5 h-5 text-primary animate-pulse" />
         <div className="flex flex-col">
           <span className="text-sm font-black tracking-tighter text-white uppercase leading-none">
-            CORE_VIBE <span className="text-primary">AI</span>
+            Stock<span className="text-primary">Sense</span>
           </span>
           <span className="text-[9px] font-mono font-medium text-slate-500 tracking-[0.2em] uppercase mt-1">
-            Neural_Engine_v1.0.4
+            Pharmacy_Inventory_AI
           </span>
         </div>
       </div>
@@ -26,6 +27,7 @@ export async function Header({ className }: Props) {
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
           <span className="text-[10px] font-mono font-bold text-emerald-500 uppercase tracking-widest">System_Online</span>
         </div>
+        <UserMenu />
         <ToggleWelcome />
       </div>
     </header>
